@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Program Interface</title>
+</head>
+<body>
+    <h1>Enter Numbers to Calculate Sum</h1>
+
+    <form id="cppForm">
+        <label for="x">Number 1:</label>
+        <input type="number" id="x" name="x" required>
+        <br>
+
+        <label for="y">Number 2:</label>
+        <input type="number" id="y" name="y" required>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Result</h2>
+    <p id="output">Waiting for result...</p>
+
+    <script>
+        // Handle form submission
+        document.getElementById('cppForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Get the values from the form
+            const x = document.getElementById('x').value;
+            const y = document.getElementById('y').value;
+
+            // Send the input to the server
+            fetch(`/run?x=${x}&y=${y}`)
+                .then(response => response.text())
+                .then(data => {
+                    // Display the result in the output paragraph
+                    document.getElementById('output').textContent = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('output').textContent = 'Error occurred!';
+                });
+        });
+    </script>
+</body>
+</html>
