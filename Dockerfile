@@ -13,7 +13,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Compile the C++ program
-RUN g++ sum.cpp -o your_program
+RUN g++ sum.cpp -o sum
+RUN g++ keygen.cpp -o keygen -lgmp
 
 # Make port 3000 available to the world outside this container
 EXPOSE 3000

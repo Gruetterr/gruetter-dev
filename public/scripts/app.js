@@ -16,3 +16,23 @@ function calculateSum() {
       document.getElementById('output').textContent = 'Error occurred!';
     });
 }
+
+// Key generation
+function getKeys() {
+  fetch('/runKeygen')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Update input fields with the returned strings
+      document.getElementById('string1').value = data[0] || '';
+      document.getElementById('string2').value = data[1] || '';
+      document.getElementById('string3').value = data[2] || '';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}

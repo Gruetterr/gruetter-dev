@@ -6,17 +6,8 @@ const app = express();
 // Serve static files
 app.use(express.static('public'));
 
-// Compile the C++ program on server startup
-exec('g++ sum.cpp -o your_program', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error compiling C++ program: ${stderr}`);
-    return;
-  }
-  console.log('C++ program compiled successfully.');
-});
-
-// Endpoint to run the C++ program
-app.get('/run', (req, res) => {
+// Endpoint to sum (testing only)
+app.get('/runSum', (req, res) => {
   const x = req.query.x;
   const y = req.query.y;
 
@@ -25,7 +16,7 @@ app.get('/run', (req, res) => {
   }
 
   const input = `${x} ${y}`;
-  const child = exec('./your_program', (error, stdout, stderr) => {
+  const child = exec('./sum', (error, stdout, stderr) => {
     if (error) {
       return res.status(500).send(`Error: ${stderr}`);
     }
@@ -35,6 +26,18 @@ app.get('/run', (req, res) => {
   // Pass input to C++ program via stdin
   child.stdin.write(input);
   child.stdin.end();
+});
+
+// Endpoint to keygen 
+app.get('/runKeygen', (req, res) => {
+  exec('./keygen', (error, stdout, stderr) => {
+    if (error) {
+      return res.status(500).send(`Error: ${stderr}`);
+    }
+
+    const strings = stdout.trim().split('\n'); // Split output into an array
+    res.json(strings); // Return as JSON
+  });
 });
 
 // Start the server

@@ -18,6 +18,7 @@
         packages = with pkgs; [
           docker
           heroku
+          gmp
         ];
         shellHook = ''
           exec zsh
