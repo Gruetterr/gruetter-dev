@@ -1,8 +1,6 @@
 // Sum function (testing only)
-document.getElementById('cppForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent form from refreshing the page
-
-  // Get the values from the form
+function calculateSum() {
+  // Get the values from the input fields
   const x = document.getElementById('x').value;
   const y = document.getElementById('y').value;
 
@@ -17,4 +15,4 @@ document.getElementById('cppForm').addEventListener('submit', function(event) {
       console.error('Error:', error);
       document.getElementById('output').textContent = 'Error occurred!';
     });
-});
+}
