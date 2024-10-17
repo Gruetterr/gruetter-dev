@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static('public'));
 
 // Compile the C++ program on server startup
-exec('g++ your_program.cpp -o your_program', (error, stdout, stderr) => {
+exec('g++ sum.cpp -o your_program', (error, stdout, stderr) => {
   if (error) {
     console.error(`Error compiling C++ program: ${stderr}`);
     return;
