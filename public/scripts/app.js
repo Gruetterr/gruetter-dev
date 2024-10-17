@@ -5,7 +5,7 @@ function calculateSum() {
   const y = document.getElementById('y').value;
 
   // Send the input to the server
-  fetch(`/run?x=${x}&y=${y}`)
+  fetch(`/runSum?x=${x}&y=${y}`)
     .then(response => response.text())
     .then(data => {
       // Display the result in the output paragraph
@@ -28,9 +28,9 @@ function getKeys() {
     })
     .then(data => {
       // Update input fields with the returned strings
-      document.getElementById('string1').value = data[0] || '';
-      document.getElementById('string2').value = data[1] || '';
-      document.getElementById('string3').value = data[2] || '';
+      document.getElementById('N_key').value = data[0] || '';
+      document.getElementById('e_key').value = data[1] || '';
+      document.getElementById('d_key').value = data[2] || '';
     })
     .catch(error => {
       console.error('Error:', error);

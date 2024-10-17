@@ -6,39 +6,41 @@
     <title>C++ Program Interface</title>
 </head>
 <body>
-    <h1>Enter Numbers to Calculate Sum</h1>
+    <h1>Tiny RSA</h1>
+    <p>This is an RSA implementation I made for my Maturitätsarbeit. Only use this for fun as this is not safe.</p>
+    <!--<h1>Enter Numbers to Calculate Sum</h1>-->
+    <!---->
+    <!--<label for="x">Number 1:</label>-->
+    <!--<input type="number" id="x" required>-->
+    <!--<br>-->
+    <!---->
+    <!--<label for="y">Number 2:</label>-->
+    <!--<input type="number" id="y" required>-->
+    <!--<br>-->
+    <!---->
+    <!--<!-- Use onclick to call the function directly -->-->
+    <!--<button onclick="calculateSum()">Calculate Sum</button>-->
+    <!---->
+    <!--<h2>Result</h2>-->
+    <!--<p id="output">Waiting for result...</p>-->
+    <h2>Get RSA keys</h2>
+    <button onclick="getKeys()">Get keys</button>
 
-    <label for="x">Number 1:</label>
-    <input type="number" id="x" required>
+    <h3>RSA-Modulus N</h3>
+    <label for="N_key">String 1:</label>
+    <input type="text" id="N_key" readonly>
     <br>
 
-    <label for="y">Number 2:</label>
-    <input type="number" id="y" required>
+    <h3>Public key e</h3>
+    <label for="e_key">String 2:</label>
+    <input type="text" id="e_key" readonly>
     <br>
 
-    <!-- Use onclick to call the function directly -->
-    <button onclick="calculateSum()">Calculate Sum</button>
-
-    <h2>Result</h2>
-    <p id="output">Waiting for result...</p>
-
-
-    <h2>Get Keys from C++ Program</h2>
-    <button onclick="getKeys()">Fetch Strings</button>
-
-    <h2>Keys</h2>
-    <label for="string1">String 1:</label>
-    <input type="text" id="string1" readonly>
+    <h3>Public key d</h3>
+    <label for="d_key">String 3:</label>
+    <input type="text" id="d_key" readonly>
     <br>
 
-    <label for="string2">String 2:</label>
-    <input type="text" id="string2" readonly>
-    <br>
-
-    <label for="string3">String 3:</label>
-    <input type="text" id="string3" readonly>
-    <br>
-    <!-- Link to the external JavaScript file -->
     <script src="scripts/app.js"></script>
 </body>
 </html>
