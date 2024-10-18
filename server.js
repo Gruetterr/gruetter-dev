@@ -63,6 +63,30 @@ app.get('/runRsaEn', (req, res) => {
   child.stdin.end();
 })
 
+// Endpoint to rsa_de
+app.get('/runRsaDe', (req, res) => {
+  const N_str = req.query.N_str;
+  const d_str = req.query.d_str;
+  const c_str = req.query.c_str;
+
+  if (!N_str || !d_str || !c_str) {
+    return res.status(400).send('Missing input values');
+  }
+
+  const input = `${N_str} ${d_str} ${c_str}`;
+  const child = exec('./rsa_de', (error, stdout, stderr) => {
+    if (error) {
+      return res.status(500).send(`Error: ${stderr}`);
+    }
+    res.send(stdout);
+  });
+
+  // Pass input to C++ program via stdin
+  child.stdin.write(input);
+  child.stdin.end();
+})
+
+
 // Start the server
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server is running...');

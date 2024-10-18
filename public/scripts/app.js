@@ -57,3 +57,24 @@ function rsaEn() {
       document.getElementById('c_text').textContent = 'Error occurred!';
     });
 }
+
+// RSA Decryption
+function rsaDe() {
+  // Get the values from the input fields
+  const N_str = document.getElementById('N_key').value;
+  const d_str = document.getElementById('d_key').value;
+  const c_str = document.getElementById('c_text').value;
+
+  // Send the input to the server
+  fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${c_str}`)
+    .then(response => response.text())
+    .then(data => {
+      // Display the result in the output paragraph
+      document.getElementById('new_m_text').textContent = data;
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('new_m_text').textContent = 'Error occurred!';
+    });
+}
