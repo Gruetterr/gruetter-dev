@@ -4,7 +4,6 @@
 #include <string.h>
 #include <string>
 #include <time.h>
-#include <vector>
 using namespace std;
 
 mpz_t p, q, N, phip, phiq, phiN, d, e;
@@ -45,6 +44,8 @@ string get_N() {
   mpz_init(phiq);
   mpz_sub_ui(phip, p, 1);
   mpz_sub_ui(phiq, q, 1);
+  mpz_clear(p);
+  mpz_clear(q);
 
   mpz_init(phiN);
   mpz_mul(phiN, phip, phiq);
@@ -53,6 +54,7 @@ string get_N() {
   mpz_clear(phiq);
 
   string N_str = mpz_get_str(NULL, 10, N);
+  mpz_clear(N);
   return N_str;
 }
 
@@ -86,9 +88,11 @@ string get_e() {
 string get_d() {
   mpz_init(d);
   mpz_invert(d, e, phiN);
+  mpz_clear(e);
 
   mpz_clear(phiN);
   string d_str = mpz_get_str(NULL, 10, d);
+  mpz_clear(d);
   return d_str;
 }
 

@@ -36,3 +36,23 @@ function getKeys() {
       console.error('Error:', error);
     });
 }
+
+// RSA encryption
+function rsaEn() {
+  // Get the values from the input fields
+  const N_str = document.getElementById('N_key').value;
+  const e_str = document.getElementById('e_key').value;
+  const m_str = document.getElementById('m_text').value;
+
+  // Send the input to the server
+  fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${m_str}`)
+    .then(response => response.text())
+    .then(data => {
+      // Display the result in the output paragraph
+      document.getElementById('c_text').textContent = data;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('c_text').textContent = 'Error occurred!';
+    });
+}

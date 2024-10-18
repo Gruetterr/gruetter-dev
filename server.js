@@ -40,6 +40,25 @@ app.get('/runKeygen', (req, res) => {
   });
 });
 
+// Endpoint to rsa_en
+app.get('/runRsaEn', (req, res) => {
+  const N_str = req.query.N_str;
+  const e_str = req.query.N_str;
+  const m_str = req.query.N_str;
+
+  const input = `${N_str} ${e_str} ${m_str}`;
+  const child = exec('./sum', (error, stdout, stderr) => {
+    if (error) {
+      return res.status(500).send(`Error: ${stderr}`);
+    }
+    res.send(stdout);
+  });
+
+  // Pass input to C++ program via stdin
+  child.stdin.write(input);
+  child.stdin.end();
+})
+
 // Start the server
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server is running...');
