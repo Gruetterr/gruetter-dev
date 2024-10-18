@@ -65,7 +65,7 @@ function rsaDe() {
   console.log("Got N: ", N_str)
   const d_str = document.getElementById('d_key').value;
   console.log("Got d: ", d_str)
-  const c_str = document.getElementById('c_text').value;
+  const c_str = document.getElementById('c_text').textContent;
   console.log("Got c: ", c_str)
 
   // Send the input to the server
