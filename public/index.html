@@ -8,21 +8,7 @@
 <body>
     <h1>Tiny RSA</h1>
     <p>This is an RSA implementation I made for my Maturitätsarbeit. Only use this for fun as this is not safe.</p>
-    <!--<h1>Enter Numbers to Calculate Sum</h1>-->
-    <!---->
-    <!--<label for="x">Number 1:</label>-->
-    <!--<input type="number" id="x" required>-->
-    <!--<br>-->
-    <!---->
-    <!--<label for="y">Number 2:</label>-->
-    <!--<input type="number" id="y" required>-->
-    <!--<br>-->
-    <!---->
-    <!--<!-- Use onclick to call the function directly -->-->
-    <!--<button onclick="calculateSum()">Calculate Sum</button>-->
-    <!---->
-    <!--<h2>Result</h2>-->
-    <!--<p id="output">Waiting for result...</p>-->
+
     <h2>Get RSA keys</h2>
     <button onclick="getKeys()">Get keys</button>
 
@@ -47,11 +33,10 @@
     <button onclick="rsaEn()">Encrypt!</button>
     <br>
 
-    <p id="c_text">Your encrypted message will appear here</p>
-    <br>
-
-    <p id="new_m_text">Your decrypted message will appear here</p>
+    <label for="c_text">Your encrypted message will appear here:</label>
+    <input type="text" id="c_text">
     <button onclick="rsaDe()">Decrypt!</button>
+    <br>
 
     <script src="scripts/app.js"></script>
 </body>

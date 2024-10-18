@@ -65,7 +65,7 @@ function rsaDe() {
   console.log("Got N: ", N_str)
   const d_str = document.getElementById('d_key').value;
   console.log("Got d: ", d_str)
-  const c_str = document.getElementById('c_text').textContent;
+  const c_str = document.getElementById('c_text').value;
   console.log("Got c: ", c_str)
 
   // Send the input to the server
@@ -73,11 +73,11 @@ function rsaDe() {
     .then(response => response.text())
     .then(data => {
       // Display the result in the output paragraph
-      document.getElementById('new_m_text').textContent = data;
+      document.getElementById('m_text').value = data;
       console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
-      document.getElementById('new_m_text').textContent = 'Error occurred!';
+      document.getElementById('m_text').value = 'Error occurred!';
     });
 }
