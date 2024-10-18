@@ -43,8 +43,8 @@ app.get('/runKeygen', (req, res) => {
 // Endpoint to rsa_en
 app.get('/runRsaEn', (req, res) => {
   const N_str = req.query.N_str;
-  const e_str = req.query.N_str;
-  const m_str = req.query.N_str;
+  const e_str = req.query.e_str;
+  const m_str = req.query.m_str;
 
   if (!N_str || !e_str || !m_str) {
     return res.status(400).send('Missing input values');

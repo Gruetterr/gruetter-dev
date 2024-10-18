@@ -50,6 +50,7 @@ function rsaEn() {
     .then(data => {
       // Display the result in the output paragraph
       document.getElementById('c_text').textContent = data;
+      console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
