@@ -62,8 +62,11 @@ function rsaEn() {
 function rsaDe() {
   // Get the values from the input fields
   const N_str = document.getElementById('N_key').value;
+  console.log("Got N: ", N_str)
   const d_str = document.getElementById('d_key').value;
+  console.log("Got d: ", d_str)
   const c_str = document.getElementById('c_text').value;
+  console.log("Got c: ", c_str)
 
   // Send the input to the server
   fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${c_str}`)
