@@ -49,12 +49,12 @@ function rsaEn() {
     .then(response => response.text())
     .then(data => {
       // Display the result in the output paragraph
-      document.getElementById('c_text').textContent = data;
+      document.getElementById('c_text').value = data;
       console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
-      document.getElementById('c_text').textContent = 'Error occurred!';
+      document.getElementById('c_text').value = 'Error occurred!';
     });
 }
 
