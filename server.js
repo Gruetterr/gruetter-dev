@@ -46,8 +46,12 @@ app.get('/runRsaEn', (req, res) => {
   const e_str = req.query.N_str;
   const m_str = req.query.N_str;
 
+  if (!N_str || !e_str || !m_str) {
+    return res.status(400).send('Missing input values');
+  }
+
   const input = `${N_str} ${e_str} ${m_str}`;
-  const child = exec('./sum', (error, stdout, stderr) => {
+  const child = exec('./rsa_en', (error, stdout, stderr) => {
     if (error) {
       return res.status(500).send(`Error: ${stderr}`);
     }
