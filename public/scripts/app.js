@@ -103,26 +103,51 @@ function rsaDe() {
   const c_str = document.getElementById('c_in').value;
   console.log("Got c: ", c_str)
 
-  // Send the input to the server
-  fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${c_str}`)
-    .then(response => response.text())
-    .then(data => {
-      // Determine amount of zeroes to be added at the start and add them
-      let padVal = 3 - data.length % 3;
-      if (padVal === 3) padVal = 0;
-      data = data.padStart(padVal + data.length, '0');
+  // Decryption
+  // Determine how many blocks there are to be decrypted seperately from input string
+  let cur_block = "";
+  let de_output = "";
+  let de_blocks = parseInt(c_str.substring(0, 3));
+  console.log("Amount of blocks to decrypt: ", de_blocks);
 
-      let decoded_m_out = "";
-      for (let i = 0; i < data.length; i += 3) {
-        let ascii = data.substring(i, i + 3);
-        decoded_m_out += String.fromCharCode(parseInt(ascii, 10));
-      }
+  for (let i = 0; i < de_blocks; i++) {
+    // Get current block
+    if (i === de_blocks - 1) {
+      cur_block = c_str.substring(i * (N_str.length - 1) + de_blocks);
+    } else {
+      cur_block = c_str.substring(i * (N_str.length - 1) + de_blocks, (i + 1) * (N_str.length - 1) + de_blocks);
+    }
+    console.log("Cur_block:", cur_block);
+    // Encrypt block
+    fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
+      .then(response => response.text())
+      .then(data => {
+        // Add decrypted block to output
+        de_output += data;
+        console.log("Decrypted block:", data);
+        console.log("Current output:", de_output);
 
-      document.getElementById('m_out').value = decoded_m_out;
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      document.getElementById('m_out').value = 'Error occurred!';
-    });
+        if (i === de_blocks - 1) {
+          // Determine amount of zeroes to be added at the start and add them
+          let padVal = 3 - de_output.length % 3;
+          if (padVal === 3) padVal = 0;
+          de_output = de_output.padStart(padVal + de_output.length, '0');
+
+          let decoded_de_output = "";
+          for (let i = 0; i < de_output.length; i += 3) {
+            let ascii = de_output.substring(i, i + 3);
+            decoded_de_output += String.fromCharCode(parseInt(ascii, 10));
+          }
+
+          document.getElementById('m_out').value = decoded_de_output;
+          console.log(decoded_de_output);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('m_out').value = 'Error occurred!';
+      });
+    // Decrypt block and add to output string
+    de_output += cur_block;
+  }
 }

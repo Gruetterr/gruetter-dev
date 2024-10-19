@@ -25,21 +25,21 @@ for (let i = 0; i < en_blocks; i++) {
 // Add block information to encrypted string
 // Send output to user
 console.log(en_output);
-let de_input = en_output;
+let c_str = en_output;
 let de_output = "";
 
 // Decryption
 // Determine how many blocks there are to be decrypted seperately from input string
-let de_blocks = parseInt(de_input.substring(0, 3));
+let de_blocks = parseInt(c_str.substring(0, 3));
 console.log("Amount of blocks to decrypt: ", de_blocks);
 
 console.log("Blocks:");
 for (let i = 0; i < de_blocks; i++) {
   // Get current block
   if (i === de_blocks - 1) {
-    cur_block = de_input.substring(i * (N_str.length - 1) + de_blocks);
+    cur_block = c_str.substring(i * (N_str.length - 1) + de_blocks);
   } else {
-    cur_block = de_input.substring(i * (N_str.length - 1) + de_blocks, (i + 1) * (N_str.length - 1) + de_blocks);
+    cur_block = c_str.substring(i * (N_str.length - 1) + de_blocks, (i + 1) * (N_str.length - 1) + de_blocks);
   }
   console.log(cur_block);
   // Decrypt block and add to output string
