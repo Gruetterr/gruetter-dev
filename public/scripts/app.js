@@ -115,10 +115,11 @@ async function rsaDe() {
     if (i === de_blocks - 1) {
       cur_block = c_str.substring(i * (N_str.length - 1) + 3);
     } else {
-      cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
+      //cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
+      cur_block = c_str.substr(i * (N_str.length - 1) + 3, N_str.length - 1);
     }
     console.log("Cur_block:", cur_block);
-    // Encrypt block
+    // Decrypt block
     await fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
