@@ -54,7 +54,7 @@ async function rsaEn() {
   // Encryption
   // Determine how many blocks are to be encrypted separately
   let en_blocks = Math.ceil(padded_m_str.length / (N_str.length - 1));
-  console.log("Blocks:", en_blocks);
+  console.log("Blocks to be encrypted:", en_blocks);
 
   let cur_block = "";
 
@@ -77,11 +77,8 @@ async function rsaEn() {
       .then(data => {
         // Add encrypted block to output
         en_output += data;
-        console.log("Encrypted block:", data);
-        console.log("Current output: ", en_output);
         if (i === en_blocks - 1) {
           // Send output to user
-          console.log("Finished output:", en_output);
           document.getElementById('c_out').value = en_output;
         }
 
@@ -97,11 +94,8 @@ async function rsaEn() {
 async function rsaDe() {
   // Get the values from the input fields
   const N_str = document.getElementById('N_key').value;
-  console.log("Got N: ", N_str)
   const d_str = document.getElementById('d_key').value;
-  console.log("Got d: ", d_str)
   const c_str = document.getElementById('c_in').value;
-  console.log("Got c: ", c_str)
 
   // Decryption
   // Determine how many blocks there are to be decrypted seperately from input string
@@ -129,8 +123,6 @@ async function rsaDe() {
         data = data.padStart(padVal + data.length, '0');
 
         de_output += data;
-        console.log("Decrypted block:", data);
-        console.log("Current output:", de_output);
 
         if (i === de_blocks - 1) {
           // Determine amount of zeroes to be added at the start and add them
