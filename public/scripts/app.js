@@ -132,6 +132,7 @@ async function rsaDe() {
           let padVal = 3 - de_output.length % 3;
           if (padVal === 3) padVal = 0;
           de_output = de_output.padStart(padVal + de_output.length, '0');
+          console.log("Padded de_output: ", de_output);
 
           let decoded_de_output = "";
           for (let i = 0; i < de_output.length; i += 3) {
