@@ -66,7 +66,7 @@ async function rsaEn() {
     if (i === en_blocks - 1) {
       cur_block = padded_m_str.substring(i * (N_str.length - 1));
     } else {
-      cur_block = padded_m_str.substring(i * (N_str.length - 1), (i + 1) * (N_str.length - 1));
+      cur_block = padded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
 
     console.log("Cur_block:", cur_block);
