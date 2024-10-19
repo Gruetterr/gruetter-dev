@@ -23,13 +23,18 @@ h3 {
   /*margin-right: 20px;*/
 }
 
+.en_de_boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .msgbox {
   width: 98%;
   height: 100px;
 }
 
 .msgbox_container {
-  float: left;
   width: 50%;
 }
 

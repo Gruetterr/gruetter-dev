@@ -25,6 +25,8 @@
     <button onclick="getKeys()">Generate keys</button>
 
     <h2>Encryption and Decryption</h2>
+    
+    <div class="en_de_boxes">
     <div class="msgbox_container">
     <h3>Message to encrypt</h3>
     <textarea type="text" id="m_in" class="msgbox"></textarea>
@@ -34,19 +36,18 @@
     <div class="msgbox_container">
     <h3>Encrypted message</h3>
     <textarea type="text" id="c_out" class="msgbox"></textarea>
-    <button onclick="rsaDe()">Decrypt!</button>
     </div>
 
     <div class="msgbox_container">
     <h3>Message to decrypt</h3>
     <textarea type="text" id="c_in" class="msgbox"></textarea>
-    <button onclick="rsaEn()">Encrypt!</button>
+    <button onclick="rsaDe()">Decrypt!</button>
     </div>
 
     <div class="msgbox_container">
     <h3>Decrypted message</h3>
     <textarea type="text" id="m_out" class="msgbox"></textarea>
-    <button onclick="rsaDe()">Decrypt!</button>
+    </div>
     </div>
 
     <script src="scripts/app.js"></script>
