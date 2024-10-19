@@ -38,7 +38,7 @@ function getKeys() {
 }
 
 // RSA encryption
-function rsaEn() {
+async function rsaEn() {
   // Get the values from the input fields
   const N_str = document.getElementById('N_key').value;
   const e_str = document.getElementById('e_key').value;
@@ -72,7 +72,7 @@ function rsaEn() {
     console.log("Cur_block:", cur_block);
 
     // Encrypt block and add to output string
-    fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${cur_block}`)
+    await fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
         // Add encrypted block to output
@@ -94,7 +94,7 @@ function rsaEn() {
 }
 
 // RSA Decryption
-function rsaDe() {
+async function rsaDe() {
   // Get the values from the input fields
   const N_str = document.getElementById('N_key').value;
   console.log("Got N: ", N_str)
@@ -119,7 +119,7 @@ function rsaDe() {
     }
     console.log("Cur_block:", cur_block);
     // Encrypt block
-    fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
+    await fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
         // Add decrypted block to output
