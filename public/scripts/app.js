@@ -115,7 +115,7 @@ async function rsaDe() {
     if (i === de_blocks - 1) {
       cur_block = c_str.substring(i * (N_str.length - 1) + 3);
     } else {
-      cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
+      cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 4);
     }
     console.log("Cur_block:", cur_block);
     // Encrypt block
