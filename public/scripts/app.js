@@ -87,6 +87,7 @@ function rsaEn() {
   }
 
   // Send output to user
+  console.log("Finished output:", en_output);
   document.getElementById('c_out').value = en_output;
 }
 
