@@ -69,13 +69,13 @@ async function rsaEn() {
       cur_block = padded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
 
-    console.log("Cur_block:", cur_block);
 
     // Encrypt block and add to output string
     await fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
         // Add encrypted block to output
+        console.log("Encrypted Block:", data);
         en_output += data;
         if (i === en_blocks - 1) {
           // Send output to user
