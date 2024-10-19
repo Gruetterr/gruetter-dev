@@ -76,6 +76,7 @@ async function rsaEn() {
       .then(data => {
         // Add encrypted block to output
         console.log("Encrypted Block:", data);
+        console.log("Its length:", data.length, "N_str.length - 1:", N_str.length - 1);
         en_output += data;
         if (i === en_blocks - 1) {
           en_output += en_blocks.toString().padStart(3, '0');
