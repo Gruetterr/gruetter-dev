@@ -113,10 +113,10 @@ async function rsaDe() {
   for (let i = 0; i < de_blocks; i++) {
     // Get current block
     if (i === de_blocks - 1) {
-      cur_block = c_str.substring(i * (N_str.length) + 3);
+      cur_block = c_str.substring(i * (N_str.length - 1) + 3);
     } else {
       //cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
-      cur_block = c_str.substr(i * (N_str.length) + 3, N_str.length);
+      cur_block = c_str.substr(i * (N_str.length - 1) + 3, N_str.length - 1);
     }
     console.log("Cur_block:", cur_block);
     // Decrypt block
