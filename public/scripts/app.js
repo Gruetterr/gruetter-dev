@@ -123,16 +123,20 @@ async function rsaDe() {
       .then(response => response.text())
       .then(data => {
         // Add decrypted block to output
+        let padVal = 3 - data.length % 3;
+        if (padVal === 3) padVal = 0;
+        data = data.padStart(padVal + data.length, '0');
+
         de_output += data;
         console.log("Decrypted block:", data);
         console.log("Current output:", de_output);
 
         if (i === de_blocks - 1) {
           // Determine amount of zeroes to be added at the start and add them
-          let padVal = 3 - de_output.length % 3;
-          if (padVal === 3) padVal = 0;
-          de_output = de_output.padStart(padVal + de_output.length, '0');
-          console.log("Padded de_output: ", de_output);
+          //let padVal = 3 - de_output.length % 3;
+          //if (padVal === 3) padVal = 0;
+          //de_output = de_output.padStart(padVal + de_output.length, '0');
+          //console.log("Padded de_output: ", de_output);
 
           let decoded_de_output = "";
           for (let i = 0; i < de_output.length; i += 3) {
