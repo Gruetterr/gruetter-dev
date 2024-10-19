@@ -16,10 +16,21 @@ h2 {
 h3 {
   margin-bottom: 5px;
 }
+
 .keybox {
   width: 100%;
   height: 50px;
   /*margin-right: 20px;*/
+}
+
+.msgbox {
+  width: 98%;
+  height: 100px;
+}
+
+.msgbox_container {
+  float: left;
+  width: 50%;
 }
 
 textarea {

@@ -25,16 +25,29 @@
     <button onclick="getKeys()">Generate keys</button>
 
     <h2>Encryption and Decryption</h2>
-
-    <h3>Your message</h3>
-    <textarea type="text" id="m_text"></textarea>
+    <div class="msgbox_container">
+    <h3>Message to encrypt</h3>
+    <textarea type="text" id="m_in" class="msgbox"></textarea>
     <button onclick="rsaEn()">Encrypt!</button>
-    <br>
+    </div>
 
+    <div class="msgbox_container">
     <h3>Encrypted message</h3>
-    <textarea type="text" id="c_text"></textarea>
+    <textarea type="text" id="c_out" class="msgbox"></textarea>
     <button onclick="rsaDe()">Decrypt!</button>
-    <br>
+    </div>
+
+    <div class="msgbox_container">
+    <h3>Message to decrypt</h3>
+    <textarea type="text" id="c_in" class="msgbox"></textarea>
+    <button onclick="rsaEn()">Encrypt!</button>
+    </div>
+
+    <div class="msgbox_container">
+    <h3>Decrypted message</h3>
+    <textarea type="text" id="m_out" class="msgbox"></textarea>
+    <button onclick="rsaDe()">Decrypt!</button>
+    </div>
 
     <script src="scripts/app.js"></script>
 </body>

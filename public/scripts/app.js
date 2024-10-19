@@ -42,19 +42,19 @@ function rsaEn() {
   // Get the values from the input fields
   const N_str = document.getElementById('N_key').value;
   const e_str = document.getElementById('e_key').value;
-  const m_str = document.getElementById('m_text').value;
+  const m_str = document.getElementById('m_in').value;
 
   // Send the input to the server
   fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${m_str}`)
     .then(response => response.text())
     .then(data => {
       // Display the result in the output paragraph
-      document.getElementById('c_text').value = data;
+      document.getElementById('c_out').value = data;
       console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
-      document.getElementById('c_text').value = 'Error occurred!';
+      document.getElementById('c_out').value = 'Error occurred!';
     });
 }
 
@@ -65,7 +65,7 @@ function rsaDe() {
   console.log("Got N: ", N_str)
   const d_str = document.getElementById('d_key').value;
   console.log("Got d: ", d_str)
-  const c_str = document.getElementById('c_text').value;
+  const c_str = document.getElementById('c_in').value;
   console.log("Got c: ", c_str)
 
   // Send the input to the server
@@ -73,11 +73,11 @@ function rsaDe() {
     .then(response => response.text())
     .then(data => {
       // Display the result in the output paragraph
-      document.getElementById('m_text').value = data;
+      document.getElementById('m_out').value = data;
       console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
-      document.getElementById('m_text').value = 'Error occurred!';
+      document.getElementById('m_out').value = 'Error occurred!';
     });
 }
