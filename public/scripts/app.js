@@ -147,7 +147,5 @@ function rsaDe() {
         console.error('Error:', error);
         document.getElementById('m_out').value = 'Error occurred!';
       });
-    // Decrypt block and add to output string
-    de_output += cur_block;
   }
 }
