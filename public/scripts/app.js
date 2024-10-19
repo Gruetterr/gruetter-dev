@@ -114,6 +114,7 @@ async function rsaDe() {
       cur_block = c_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
     console.log("Cur_block:", cur_block);
+    console.log("Its length:", cur_block.length, "N_str.length - 1:", N_str.length - 1);
     // Decrypt block
     await fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
       .then(response => response.text())
