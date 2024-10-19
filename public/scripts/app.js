@@ -79,7 +79,7 @@ function rsaEn() {
         en_output += data;
         console.log("Encrypted block:", data);
         console.log("Current output: ", en_output);
-        if (i === blocks - 1) {
+        if (i === en_blocks - 1) {
           // Send output to user
           console.log("Finished output:", en_output);
           document.getElementById('c_out').value = en_output;
