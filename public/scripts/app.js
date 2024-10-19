@@ -51,18 +51,38 @@ function rsaEn() {
     padded_m_str += ascii.padStart(3, '0');
   }
 
-  // Send the input to the server
-  fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${padded_m_str}`)
-    .then(response => response.text())
-    .then(data => {
-      // Display the result in the output paragraph
-      document.getElementById('c_out').value = data;
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      document.getElementById('c_out').value = 'Error occurred!';
-    });
+  // Encryption
+  // Determine how many blocks are to be encrypted separately
+  let en_blocks = Math.ceil(padded_m_str.length / (N_str.length - 1));
+
+  let cur_block = "";
+
+  // Initialize output with block information
+  let en_output = en_blocks.toString().padStart(3, '0');
+
+  for (let i = 0; i < en_blocks; i++) {
+    // Get current block
+    if (i === en_blocks - 1) {
+      cur_block = padded_m_str.substring(i * (N_str.length - 1));
+    } else {
+      cur_block = padded_m_str.substring(i * (N_str.length - 1), (i + 1) * (N_str.length - 1));
+    }
+
+    // Encrypt block and add to output string
+    fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${cur_block}`)
+      .then(response => response.text())
+      .then(data => {
+        // Add encrypted block to output
+        en_output += data;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('c_out').value = 'Error occurred!';
+      });
+  }
+
+  // Send output to user
+  document.getElementById('c_out').value = en_output;
 }
 
 // RSA Decryption
