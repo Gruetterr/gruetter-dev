@@ -127,7 +127,7 @@ async function rsaDe() {
       .then(response => response.text())
       .then(data => {
         // Prepadding to ensure correct decoding
-        let padVal = N_str.length - data.length;
+        let padVal = N_str.length - 1 - data.length;
         data = data.padStart(padVal + data.length, '0');
 
         // this is old, doesnt work
