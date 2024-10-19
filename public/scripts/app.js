@@ -65,6 +65,7 @@ async function rsaEn() {
     // Get current block
     if (i === en_blocks - 1) {
       cur_block = padded_m_str.substring(i * (N_str.length - 1));
+      cur_block = cur_block.padEnd(N_str.length - 1, '0');
     } else {
       cur_block = padded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
@@ -125,11 +126,16 @@ async function rsaDe() {
     await fetch(`/runRsaDe?N_str=${N_str}&d_str=${d_str}&c_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
-        // Add decrypted block to output
-        let padVal = 3 - data.length % 3;
-        if (padVal === 3) padVal = 0;
+        // Prepadding to ensure correct decoding
+        let padVal = N_str.length - data.length;
         data = data.padStart(padVal + data.length, '0');
 
+        // this is old, doesnt work
+        //let padVal = 3 - data.length % 3;
+        //if (padVal === 3) padVal = 0;
+        //data = data.padStart(padVal + data.length, '0');
+
+        // Add decrypted block to output
         de_output += data;
         console.log("Decrypted block: ", data);
 
