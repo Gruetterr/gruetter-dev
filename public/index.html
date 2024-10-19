@@ -17,10 +17,12 @@
     You can also enter your own keys, but be aware that they will not be checked for validity. The cryptosystem may not work as expected if your keys aren't valid.
 
     <h3>RSA-Modulus N</h3>
+    This is the RSA-Modulus N. It needs to be a product of two primes p and q.
     <textarea type="text" id="N_key" class="keybox"></textarea>
     <h3>Public key e</h3>
-    <textarea type="text" id="e_key" class="keybox"></textarea>
-    <h3>Public key d</h3>
+    This is the public key. It has to be coprime to (p-1)*(q-1), that is gcd(e, (p-1)*(q-1)) = 1. If you want your friends to encrypt something for you, send them this and N.    <textarea type="text" id="e_key" class="keybox"></textarea>
+    <h3>Private key d</h3>
+    This is the private key. It has to be the modular multiplicative inverse of e mod (p-1)(q-1), that is d * e ≡ 1 mod (p-1)(q-1). You need this and N to decrypt something. 
     <textarea type="text" id="d_key" class="keybox"></textarea>
     <button onclick="getKeys()">Generate keys</button>
 
