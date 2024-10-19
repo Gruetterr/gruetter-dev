@@ -131,6 +131,7 @@ async function rsaDe() {
         data = data.padStart(padVal + data.length, '0');
 
         de_output += data;
+        console.log("Decrypted block: ", data);
 
         if (i === de_blocks - 1) {
           // Determine amount of zeroes to be added at the start and add them
