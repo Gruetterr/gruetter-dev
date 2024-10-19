@@ -54,6 +54,7 @@ function rsaEn() {
   // Encryption
   // Determine how many blocks are to be encrypted separately
   let en_blocks = Math.ceil(padded_m_str.length / (N_str.length - 1));
+  console.log("Blocks:", en_blocks);
 
   let cur_block = "";
 
@@ -68,12 +69,16 @@ function rsaEn() {
       cur_block = padded_m_str.substring(i * (N_str.length - 1), (i + 1) * (N_str.length - 1));
     }
 
+    console.log("Cur_block:", cur_block);
+
     // Encrypt block and add to output string
     fetch(`/runRsaEn?N_str=${N_str}&e_str=${e_str}&m_str=${cur_block}`)
       .then(response => response.text())
       .then(data => {
         // Add encrypted block to output
         en_output += data;
+        console.log("Encrypted block:", data);
+        console.log("Current output: ", en_output);
       })
       .catch(error => {
         console.error('Error:', error);
