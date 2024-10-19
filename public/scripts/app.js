@@ -59,7 +59,7 @@ async function rsaEn() {
   let cur_block = "";
 
   // Initialize output with block information
-  let en_output = en_blocks.toString().padStart(3, '0');
+  let en_output = "";
 
   for (let i = 0; i < en_blocks; i++) {
     // Get current block
@@ -78,6 +78,7 @@ async function rsaEn() {
         console.log("Encrypted Block:", data);
         en_output += data;
         if (i === en_blocks - 1) {
+          en_output += en_blocks.toString().padStart(3, '0');
           // Send output to user
           document.getElementById('c_out').value = en_output;
         }
@@ -101,16 +102,16 @@ async function rsaDe() {
   // Determine how many blocks there are to be decrypted seperately from input string
   let cur_block = "";
   let de_output = "";
-  let de_blocks = parseInt(c_str.substring(0, 3));
+  let de_blocks = parseInt(c_str.slice(-3));
   console.log("Amount of blocks to decrypt: ", de_blocks);
 
   for (let i = 0; i < de_blocks; i++) {
     // Get current block
     if (i === de_blocks - 1) {
-      cur_block = c_str.substring(i * (N_str.length - 1) + 3);
+      cur_block = c_str.substring(i * (N_str.length - 1));
     } else {
       //cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
-      cur_block = c_str.substr(i * (N_str.length - 1) + 3, N_str.length - 1);
+      cur_block = c_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
     console.log("Cur_block:", cur_block);
     // Decrypt block
