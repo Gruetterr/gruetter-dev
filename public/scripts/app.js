@@ -129,7 +129,10 @@ async function rsaDe() {
         // Prepadding to ensure correct decoding
         let padVal = N_str.length - 1 - data.length;
         data = data.padStart(padVal + data.length, '0');
-
+        if (i === de_blocks - 1) {
+          // Remove padded triples of zeros at the end of last block
+          data = data.replace(/(000)*$/, "");
+        }
 
         // this is old, doesnt work
         //let padVal = 3 - data.length % 3;
@@ -141,8 +144,6 @@ async function rsaDe() {
         console.log("Decrypted block: ", data);
 
         if (i === de_blocks - 1) {
-          // Remove padded triples of zeros at the end of last block
-          data = data.replace(/(000)*$/, "");
           // Determine amount of zeroes to be added at the start and add them
           //let padVal = 3 - de_output.length % 3;
           //if (padVal === 3) padVal = 0;
