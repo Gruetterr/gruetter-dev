@@ -1,15 +1,7 @@
-const helmet = require("helmet");
 const express = require('express');
 const { exec } = require('child_process');
 const path = require('path');
 const app = express();
-// again?=
-app.use(helmet({
-  hsts: false,
-}));
-// HSTS fix?? no
-//const helmet = require("helmet");
-//app.use(helmet({ hsts: false }));
 
 // Serve static files
 app.use(express.static('public'));
