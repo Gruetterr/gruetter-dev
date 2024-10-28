@@ -3,6 +3,17 @@ const { exec } = require('child_process');
 const path = require('path');
 const app = express();
 
+const helmet = require('helmet');
+
+// Enable HSTS with custom settings
+app.use(helmet({
+  hsts: {
+    maxAge: 60 * 60 * 24 * 365, // 1 year in seconds
+    includeSubDomains: true,     // Apply HSTS to all subdomains
+    preload: true,               // Indicates if the site should be included in browsers' HSTS preload list
+  }
+}));
+
 // Serve static files
 app.use(express.static('public'));
 
