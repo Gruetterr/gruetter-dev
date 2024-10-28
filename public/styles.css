@@ -1,7 +1,7 @@
 body {
-  background-color: #16423C;
-  color: #C4DAD2;
-  font-family: 'M Plus Code Latin';
+  background-color: #16423c;
+  color: #c4dad2;
+  font-family: "M Plus Code Latin";
   font-size: 20pt;
 }
 
@@ -40,6 +40,6 @@ h3 {
 
 textarea {
   border-radius: 10px;
-  border: 2px solid #6A9C89;
-  background-color: #E9EFEC;
+  border: 2px solid #6a9c89;
+  background-color: #e9efec;
 }
