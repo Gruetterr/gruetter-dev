@@ -4,7 +4,6 @@ const { exec } = require('child_process');
 const path = require('path');
 const app = express();
 // again?=
-app.use(helmet);
 app.use(helmet({
   hsts: false,
 }));
