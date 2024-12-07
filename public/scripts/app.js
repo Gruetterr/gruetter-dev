@@ -132,6 +132,7 @@ async function rsaDe() {
         // Prepadding to ensure correct decoding
         //let padVal = N_str.length - 1 - data.length;
         //data = data.padStart(padVal + data.length, '0');
+        data = "0".repeat(3 - data.length % 3) + data
         if (i === de_blocks - 1) {
           // Remove padded triples of zeros at the end of last block
           data = data.replace(/(000)*$/, "");
