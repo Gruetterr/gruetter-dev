@@ -69,6 +69,7 @@ async function rsaEn() {
     } else {
       cur_block = encoded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
+    console.log("block before en: ", cur_block);
 
 
     // Encrypt block and add to output string
