@@ -44,16 +44,16 @@ async function rsaEn() {
   const e_str = document.getElementById('e_key').value;
   const m_str = document.getElementById('m_in').value;
 
-  let padded_m_str = "";
+  let encoded_m_str = "";
 
   for (let i = 0; i < m_str.length; i++) {
     let ascii = m_str.charCodeAt(i).toString();
-    padded_m_str += ascii.padStart(3, '0');
+    encoded_m_str += ascii.padStart(3, '0');
   }
 
   // Encryption
   // Determine how many blocks are to be encrypted separately
-  let en_blocks = Math.ceil(padded_m_str.length / (N_str.length - 1));
+  let en_blocks = Math.ceil(encoded_m_str.length / (N_str.length - 1));
   console.log("Blocks to be encrypted:", en_blocks);
 
   let cur_block = "";
@@ -64,10 +64,10 @@ async function rsaEn() {
   for (let i = 0; i < en_blocks; i++) {
     // Get current block
     if (i === en_blocks - 1) {
-      cur_block = padded_m_str.substring(i * (N_str.length - 1));
+      cur_block = encoded_m_str.substring(i * (N_str.length - 1));
       cur_block = cur_block.padEnd(N_str.length - 1, '0');
     } else {
-      cur_block = padded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
+      cur_block = encoded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
 
 
