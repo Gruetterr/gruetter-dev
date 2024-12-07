@@ -117,7 +117,6 @@ async function rsaDe() {
     if (i === de_blocks - 1) {
       cur_block = c_str.substring(i * N_str.length, c_str.length - 3);
     } else {
-      //cur_block = c_str.substring(i * (N_str.length - 1) + 3, (i + 1) * (N_str.length - 1) + 3);
       cur_block = c_str.substr(i * N_str.length, N_str.length);
     }
     console.log("Cur_block:", cur_block);
@@ -134,21 +133,12 @@ async function rsaDe() {
           data = data.replace(/(000)*$/, "");
         }
 
-        // this is old, doesnt work
-        //let padVal = 3 - data.length % 3;
-        //if (padVal === 3) padVal = 0;
-        //data = data.padStart(padVal + data.length, '0');
-
         // Add decrypted block to output
         de_output += data;
         console.log("Decrypted block: ", data);
 
         if (i === de_blocks - 1) {
           // Determine amount of zeroes to be added at the start and add them
-          //let padVal = 3 - de_output.length % 3;
-          //if (padVal === 3) padVal = 0;
-          //de_output = de_output.padStart(padVal + de_output.length, '0');
-          //console.log("Padded de_output: ", de_output);
 
           let decoded_de_output = "";
           for (let i = 0; i + 3 <= de_output.length; i += 3) {

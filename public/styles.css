@@ -1,6 +1,6 @@
 body {
-  background-color: #16423c;
-  color: #c4dad2;
+  /*background-color: #16423c;*/
+  /*color: #c4dad2;*/
   font-family: "M Plus Code Latin";
   font-size: 20pt;
 }
@@ -42,4 +42,13 @@ textarea {
   border-radius: 10px;
   border: 2px solid #6a9c89;
   background-color: #e9efec;
+}
+
+canvas {
+  border: 1px solid black;
+}
+#gameDiv {
+  display: flex; /* Use flexbox for centering the canvas */
+  justify-content: center; /* Center the canvas horizontally */
+  align-items: center; /* Center the canvas vertically */
 }
