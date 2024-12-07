@@ -65,7 +65,10 @@ async function rsaEn() {
     // Get current block
     if (i === en_blocks - 1) {
       cur_block = encoded_m_str.substring(i * (N_str.length - 1));
-      cur_block = cur_block.padEnd(N_str.length - 1, '0');
+      // good padding, finally?
+      zero_triplets_back = Math.floor((N_str.length - 1 - cur_block.length) / 3);
+      zeros_front = N_str.length - 1 - cur_block.length - 3 * zero_triplets_back;
+      cur_block = "0".repeat(zeros_front) + cur_block + "000".repeat(zero_triplets_back);
     } else {
       cur_block = encoded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
@@ -127,8 +130,8 @@ async function rsaDe() {
       .then(response => response.text())
       .then(data => {
         // Prepadding to ensure correct decoding
-        let padVal = N_str.length - 1 - data.length;
-        data = data.padStart(padVal + data.length, '0');
+        //let padVal = N_str.length - 1 - data.length;
+        //data = data.padStart(padVal + data.length, '0');
         if (i === de_blocks - 1) {
           // Remove padded triples of zeros at the end of last block
           data = data.replace(/(000)*$/, "");
@@ -139,8 +142,6 @@ async function rsaDe() {
         console.log("Decrypted block: ", data);
 
         if (i === de_blocks - 1) {
-          // Determine amount of zeroes to be added at the start and add them
-
           let decoded_de_output = "";
           for (let i = 0; i + 3 <= de_output.length; i += 3) {
             let ascii = de_output.substring(i, i + 3);
