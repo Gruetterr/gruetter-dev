@@ -111,11 +111,11 @@ async function rsaDe() {
 
   // Decryption
   // Determine how many blocks there are to be decrypted seperately from input string
-  let cur_block = "";
-  let de_output = "";
   let de_blocks = parseInt(c_str.slice(-3));
   console.log("Amount of blocks to decrypt: ", de_blocks);
 
+  let cur_block = "";
+  let de_output = "";
   for (let i = 0; i < de_blocks; i++) {
     // Get current block
     if (i === de_blocks - 1) {
@@ -132,8 +132,8 @@ async function rsaDe() {
         // Prepadding to ensure correct decoding
         //let padVal = N_str.length - 1 - data.length;
         //data = data.padStart(padVal + data.length, '0');
-        data = "0".repeat(3 - data.length % 3) + data
         if (i === de_blocks - 1) {
+          data = "0".repeat(3 - data.length % 3) + data
           // Remove padded triples of zeros at the end of last block
           data = data.replace(/(000)*$/, "");
         }
