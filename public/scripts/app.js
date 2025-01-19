@@ -66,9 +66,10 @@ async function rsaEn() {
     if (i === en_blocks - 1) {
       cur_block = encoded_m_str.substring(i * (N_str.length - 1));
       // good padding, finally?
-      zero_triplets_back = Math.floor((N_str.length - 1 - cur_block.length) / 3);
-      zeros_front = N_str.length - 1 - cur_block.length - 3 * zero_triplets_back;
-      cur_block = "0".repeat(zeros_front) + cur_block + "000".repeat(zero_triplets_back);
+      //zero_triplets_back = Math.floor((N_str.length - 1 - cur_block.length) / 3);
+      //zeros_front = N_str.length - 1 - cur_block.length - 3 * zero_triplets_back;
+      //cur_block = "0".repeat(zeros_front) + cur_block + "000".repeat(zero_triplets_back);
+      cur_block = cur_block + "0".repeat(N_str.length - 1 - cur_block.length)
     } else {
       cur_block = encoded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
