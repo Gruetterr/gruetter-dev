@@ -14,31 +14,40 @@ string get_N() {
   gmp_randinit_mt(state);
   gmp_randseed_ui(state, time(NULL));
 
-  int is_prime = 0;
-
-  // Generate random p and q
-  mpz_init(p);
   while (1) {
-    mpz_urandomb(p, state, 1024);
-    is_prime = mpz_probab_prime_p(p, 25);
-    if (is_prime != 0)
+    int is_prime = 0;
+
+    // Generate random p and q
+    mpz_init(p);
+    while (1) {
+      mpz_urandomb(p, state, 1024);
+      is_prime = mpz_probab_prime_p(p, 25);
+      if (is_prime != 0)
+        break;
+    }
+
+    mpz_init(q);
+    while (1) {
+      mpz_urandomb(q, state, 1024);
+      is_prime = mpz_probab_prime_p(q, 25);
+      if (is_prime != 0)
+        break;
+    }
+
+    /*gmp_printf("Random p: %Zd\n", p);*/
+    /*gmp_printf("Random q: %Zd\n", q);*/
+
+    // Calculate N and phi(N)
+    mpz_init(N);
+    mpz_mul(N, p, q);
+    // THIS IS NEW!
+    if ((mpz_sizeinbase(N, 10) - 1) % 3 == 0) {
       break;
+    }
+    mpz_clear(N);
+    mpz_clear(p);
+    mpz_clear(q);
   }
-
-  mpz_init(q);
-  while (1) {
-    mpz_urandomb(q, state, 1024);
-    is_prime = mpz_probab_prime_p(q, 25);
-    if (is_prime != 0)
-      break;
-  }
-
-  /*gmp_printf("Random p: %Zd\n", p);*/
-  /*gmp_printf("Random q: %Zd\n", q);*/
-
-  // Calculate N and phi(N)
-  mpz_init(N);
-  mpz_mul(N, p, q);
 
   mpz_init(phip);
   mpz_init(phiq);
