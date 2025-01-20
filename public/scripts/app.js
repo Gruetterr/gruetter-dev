@@ -149,7 +149,9 @@ async function rsaDe() {
           let decoded_de_output = "";
           for (let i = 0; i + 3 <= de_output.length; i += 3) {
             let ascii = de_output.substring(i, i + 3);
-            decoded_de_output += String.fromCharCode(parseInt(ascii, 10));
+            if (ascii != "000") {
+              decoded_de_output += String.fromCharCode(parseInt(ascii, 10));
+            }
           }
 
           document.getElementById('m_out').value = decoded_de_output;
