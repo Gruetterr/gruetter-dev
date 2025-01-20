@@ -40,31 +40,25 @@ string get_N() {
     // Calculate N and phi(N)
     mpz_init(N);
     mpz_mul(N, p, q);
-    // THIS IS NEW!
-    if ((mpz_sizeinbase(N, 10) - 1) % 3 == 0) {
-      break;
-    }
-    mpz_clear(N);
+    mpz_init(phip);
+    mpz_init(phiq);
+    mpz_sub_ui(phip, p, 1);
+    mpz_sub_ui(phiq, q, 1);
     mpz_clear(p);
     mpz_clear(q);
+
+    mpz_init(phiN);
+    mpz_mul(phiN, phip, phiq);
+
+    mpz_clear(phip);
+    mpz_clear(phiq);
+
+    string N_str = mpz_get_str(NULL, 10, N);
+    mpz_clear(N);
+    if ((N_str.length() - 1) % 3 == 0) {
+      return N_str;
+    }
   }
-
-  mpz_init(phip);
-  mpz_init(phiq);
-  mpz_sub_ui(phip, p, 1);
-  mpz_sub_ui(phiq, q, 1);
-  mpz_clear(p);
-  mpz_clear(q);
-
-  mpz_init(phiN);
-  mpz_mul(phiN, phip, phiq);
-
-  mpz_clear(phip);
-  mpz_clear(phiq);
-
-  string N_str = mpz_get_str(NULL, 10, N);
-  mpz_clear(N);
-  return N_str;
 }
 
 string get_e() {
