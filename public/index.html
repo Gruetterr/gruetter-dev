@@ -14,52 +14,40 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <h1>Tiny RSA</h1>
-    This is an RSA implementation I made for my Maturaarbeit. Only use this for
-    fun as the PRNG used here is not cryptographically safe.
+    <h1>RSA</h1>
 
-    <h2>RSA keys</h2>
-    You can also enter your own keys, but be aware that they will not be checked
-    for validity. The cryptosystem may not work as expected if your keys aren't
-    valid.
+    <h2>Schlüssel</h2>
 
-    <h3>RSA-Modulus N</h3>
-    This is the RSA-Modulus N. It needs to be a product of two primes p and q.
+    <h3>RSA-Modul N</h3>
     <textarea type="text" id="N_key" class="keybox"></textarea>
-    <h3>Public key e</h3>
-    This is the public key. It has to be coprime to (p-1)*(q-1), that is gcd(e,
-    (p-1)*(q-1)) = 1. If you want your friends to encrypt something for you,
-    send them this and N.
+    <h3>Öffentlicher Schlüssel e</h3>
     <textarea type="text" id="e_key" class="keybox"></textarea>
-    <h3>Private key d</h3>
-    This is the private key. It has to be the modular multiplicative inverse of
-    e mod (p-1)(q-1), that is d * e ≡ 1 mod (p-1)(q-1). You need this and N to
-    decrypt something.
+    <h3>Privater Schlüssel d</h3>
     <textarea type="text" id="d_key" class="keybox"></textarea>
-    <button onclick="getKeys()">Generate keys</button>
+    <button onclick="getKeys()">Schlüssel generieren!</button>
 
-    <h2>Encryption and Decryption</h2>
+    <h2>Ver- und Entschlüsseln</h2>
 
     <div class="en_de_boxes">
       <div class="msgbox_container">
-        <h3>Message to encrypt</h3>
+        <h3>Zu verschlüsselnde Nachricht</h3>
         <textarea type="text" id="m_in" class="msgbox"></textarea>
-        <button onclick="rsaEn()">Encrypt!</button>
+        <button onclick="rsaEn()">Verschlüsseln!</button>
       </div>
 
       <div class="msgbox_container">
-        <h3>Encrypted message</h3>
+        <h3>Verschlüsselte Nachricht</h3>
         <textarea type="text" id="c_out" class="msgbox"></textarea>
       </div>
 
       <div class="msgbox_container">
-        <h3>Message to decrypt</h3>
+        <h3>Zu entschlüsselnde Nachricht</h3>
         <textarea type="text" id="c_in" class="msgbox"></textarea>
-        <button onclick="rsaDe()">Decrypt!</button>
+        <button onclick="rsaDe()">Entschlüsseln!</button>
       </div>
 
       <div class="msgbox_container">
-        <h3>Decrypted message</h3>
+        <h3>Entschlüsselte Nachricht</h3>
         <textarea type="text" id="m_out" class="msgbox"></textarea>
       </div>
     </div>
