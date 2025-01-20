@@ -136,7 +136,7 @@ async function rsaDe() {
         //data = data.padStart(padVal + data.length, '0');
         //// OK HERE
         //if (i != de_blocks -1) {
-        data = "0".repeat(N_str.length - 1 - data.length) + data
+        //data = "0".repeat(N_str.length - 1 - data.length) + data
         //}
         //THIS:
         //if (i === de_blocks - 1) {
@@ -152,9 +152,9 @@ async function rsaDe() {
           let decoded_de_output = "";
           for (let i = 0; i + 3 <= de_output.length; i += 3) {
             let ascii = de_output.substring(i, i + 3);
-            if (ascii != "000") {
-              decoded_de_output += String.fromCharCode(parseInt(ascii, 10));
-            }
+            //if (ascii != "000") {
+            decoded_de_output += String.fromCharCode(parseInt(ascii, 10));
+            //}
           }
 
           document.getElementById('m_out').value = decoded_de_output;
