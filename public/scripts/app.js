@@ -69,7 +69,8 @@ async function rsaEn() {
       //zero_triplets_back = Math.floor((N_str.length - 1 - cur_block.length) / 3);
       //zeros_front = N_str.length - 1 - cur_block.length - 3 * zero_triplets_back;
       //cur_block = "0".repeat(zeros_front) + cur_block + "000".repeat(zero_triplets_back);
-      cur_block = cur_block + "0".repeat(N_str.length - 1 - cur_block.length)
+      //THIS:
+      //cur_block = cur_block + "0".repeat(N_str.length - 1 - cur_block.length)
     } else {
       cur_block = encoded_m_str.substr(i * (N_str.length - 1), N_str.length - 1);
     }
@@ -134,10 +135,11 @@ async function rsaDe() {
         //let padVal = N_str.length - 1 - data.length;
         //data = data.padStart(padVal + data.length, '0');
         data = "0".repeat(N_str.length - 1 - data.length) + data
-        if (i === de_blocks - 1) {
-          // Remove padded triples of zeros at the end of last block
-          data = data.replace(/(000)*$/, "");
-        }
+        //THIS:
+        //if (i === de_blocks - 1) {
+        //  // Remove padded triples of zeros at the end of last block
+        //  data = data.replace(/(000)*$/, "");
+        //}
 
         // Add decrypted block to output
         de_output += data;
